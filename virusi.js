@@ -37,7 +37,7 @@ if (fs.existsSync("./gifted_baileys")) {
 
 app.use("/", async (req, res) => {
   const {
-    default: KishWASocket,
+    default: GiftedWASocket,
     useMultiFileAuthState,
     Browsers,
     delay,
@@ -47,12 +47,12 @@ app.use("/", async (req, res) => {
   const store = makeInMemoryStore({
     logger: pino().child({ level: "silent", stream: "store" }),
   });
-  async function KISH() {
+  async function GIFTED() {
     const { state, saveCreds } = await useMultiFileAuthState(
       __dirname + "/gifted_baileys",
     );
     try {
-      let Smd = KishWASocket({
+      let Smd = GiftedWASocket({
         printQRInTerminal: false,
         logger: pino({ level: "silent" }),
         browser: ["Virusi", "GiftedQrScan", ""],
