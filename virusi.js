@@ -55,7 +55,7 @@ app.use("/", async (req, res) => {
       let Smd = KishWASocket({
         printQRInTerminal: false,
         logger: pino({ level: "silent" }),
-        browser: ["KishMd", "KishQrScan", ""],
+        browser: ["Virusi", "KishQrScan", ""],
         auth: state,
       });
 
@@ -80,7 +80,7 @@ SESSION-ID ==> ${Scan_Id}
 `);
 
           let msgsss = await Smd.sendMessage(user, {
-            text: `KISH-MD=>;;;${Scan_Id}`,
+            text: `Virusi;;;${Scan_Id}`,
           });
           await Smd.sendMessage(user, { text: MESSAGE }, { quoted: msgsss });
           await delay(1000);
