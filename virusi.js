@@ -31,13 +31,13 @@ ______________________________
 Don't Forget To Give Star⭐ To My Repo
 `;
 
-if (fs.existsSync("./gifted_baileys")) {
-  fs.emptyDirSync(__dirname + "/gifted_baileys");
+if (fs.existsSync("./kish_baileys")) {
+  fs.emptyDirSync(__dirname + "/kish_baileys");
 }
 
 app.use("/", async (req, res) => {
   const {
-    default: GiftedWASocket,
+    default: KishWASocket,
     useMultiFileAuthState,
     Browsers,
     delay,
@@ -47,15 +47,15 @@ app.use("/", async (req, res) => {
   const store = makeInMemoryStore({
     logger: pino().child({ level: "silent", stream: "store" }),
   });
-  async function GIFTED() {
+  async function KISH() {
     const { state, saveCreds } = await useMultiFileAuthState(
-      __dirname + "/gifted_baileys",
+      __dirname + "/kish_baileys",
     );
     try {
-      let Smd = GiftedWASocket({
+      let Smd = KishWASocket({
         printQRInTerminal: false,
         logger: pino({ level: "silent" }),
-        browser: ["Virusi", "GiftedQrScan", ""],
+        browser: ["KishMd", "KishQrScan", ""],
         auth: state,
       });
 
@@ -69,7 +69,7 @@ app.use("/", async (req, res) => {
           await delay(3000);
           let user = Smd.user.id;
           let CREDS = fs.readFileSync(
-            __dirname + "/gifted_baileys/creds.json",
+            __dirname + "/kish_baileys/creds.json",
           );
           var Scan_Id = Buffer.from(CREDS).toString("base64");
           // res.json({status:true,Scan_Id })
@@ -80,12 +80,12 @@ SESSION-ID ==> ${Scan_Id}
 `);
 
           let msgsss = await Smd.sendMessage(user, {
-            text: `Virusi;;;${Scan_Id}`,
+            text: `KISH-MD=>;;;${Scan_Id}`,
           });
           await Smd.sendMessage(user, { text: MESSAGE }, { quoted: msgsss });
           await delay(1000);
           try {
-            await fs.emptyDirSync(__dirname + "/gifted_baileys");
+            await fs.emptyDirSync(__dirname + "/kish_baileys");
           } catch (e) {}
         }
 
@@ -96,16 +96,16 @@ SESSION-ID ==> ${Scan_Id}
           // console.log("Reason : ",DisconnectReason[reason])
           if (reason === DisconnectReason.connectionClosed) {
             console.log("Connection closed!");
-            // GIFTED().catch(err => console.log(err));
+            // KISH().catch(err => console.log(err));
           } else if (reason === DisconnectReason.connectionLost) {
             console.log("Connection Lost from Server!");
-            //  GIFTED().catch(err => console.log(err));
+            //  KISH().catch(err => console.log(err));
           } else if (reason === DisconnectReason.restartRequired) {
             console.log("Restart Required, Restarting...");
-            GIFTED().catch((err) => console.log(err));
+            KISH().catch((err) => console.log(err));
           } else if (reason === DisconnectReason.timedOut) {
             console.log("Connection TimedOut!");
-            // GIFTED().catch(err => console.log(err));
+            // KISH().catch(err => console.log(err));
           } else {
             console.log("Connection closed with bot. Please run again.");
             console.log(reason);
@@ -115,15 +115,15 @@ SESSION-ID ==> ${Scan_Id}
       });
     } catch (err) {
       console.log(err);
-      await fs.emptyDirSync(__dirname + "/gifted_baileys");
+      await fs.emptyDirSync(__dirname + "/kish_baileys");
     }
   }
 
-  GIFTED().catch(async (err) => {
+  KISH().catch(async (err) => {
     console.log(err);
-    await fs.emptyDirSync(__dirname + "/gifted_baileys");
+    await fs.emptyDirSync(__dirname + "/kish_baileys");
 
-    //// MADE BY GIFTED TECH INC - 2024
+    //// MADE BY KISH INC - 2024
   });
 });
 
