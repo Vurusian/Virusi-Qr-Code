@@ -1,1 +1,1 @@
-web: node virusi.js
+web: node index.js
