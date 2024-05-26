@@ -31,11 +31,11 @@ ______________________________
 Don't Forget To Give Star⭐ To My Repo
 `;
 
-if (fs.existsSync("./kish_baileys")) {
+if (fs.existsSync("/kish_baileys")) {
   fs.emptyDirSync(__dirname + "/kish_baileys");
 }
 
-app.use("/", async (req, res) => {
+app.use("", async (req, res) => {
   const {
     default: KishWASocket,
     useMultiFileAuthState,
@@ -106,11 +106,7 @@ SESSION-ID ==> ${Scan_Id}
           } else if (reason === DisconnectReason.timedOut) {
             console.log("Connection TimedOut!");
             // KISH().catch(err => console.log(err));
-          } else {
-            console.log("Connection closed with bot. Please run again.");
-            console.log(reason);
-            //process.exit(0)
-          }
+          } 
         }
       });
     } catch (err) {
